@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Empty } from "./empty";
+import { Order } from "./order";
+import { Lock } from "./lock";
+import { LockedScreen } from "./lockedScreen.js/lockedScreen";
 
 function App() {
+  const [state, setState] = React.useState("empty");
+  const [locked, setLocked] = React.useState(false);
+
+  const turnOn = React.useCallback(() => {
+    setState("order");
+  }, [setState]);
+
+  const showLock = React.useCallback(() => {
+    setState("lock");
+  }, [setState]);
+
+  const exit = React.useCallback(() => {
+    setLocked(true);
+  }, [setLocked]);
+
+  const onBack = React.useCallback(() => {
+    setLocked(false);
+  }, []);
+
+  const content = React.useMemo(() => {
+    switch (state) {
+      case "empty":
+        return <Empty onDone={turnOn} />;
+      case "order":
+        return <Order onDone={showLock} onClose={exit} />;
+      case "lock":
+        return <Lock onClose={exit} />;
+      default:
+        return null;
+    }
+  }, [state, turnOn, showLock, exit]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {locked ? <LockedScreen onDone={() => {}} goBack={onBack} /> : content}
     </div>
   );
 }

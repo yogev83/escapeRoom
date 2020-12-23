@@ -1,0 +1,10 @@
+.codeChar {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  font-weight: bolder;
+  font-size: larger;
+  text-align: center;
+}
