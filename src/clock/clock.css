@@ -1,0 +1,6 @@
+.clock {
+  position: absolute;
+  width: 100%;
+  color: red;
+  bottom: 0;
+}

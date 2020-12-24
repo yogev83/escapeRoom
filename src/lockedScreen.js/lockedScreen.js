@@ -5,10 +5,10 @@ import { Hint } from "./hint";
 
 import "./lockedScreen.css";
 
-const CODE = "213782";
+const CODE = "238172";
 
 export function LockedScreen({ onDone, goBack }) {
-  const code = useCode({ CODE, onDone });
+  const code = useCode(CODE, onDone);
   const [hint, setHint] = React.useState(false);
   return (
     <div className="lockedScreen">

@@ -2,7 +2,7 @@ import React from "react";
 import { Code } from "./code/code";
 import { useCode } from "./code/useCode";
 
-const CODE = "251";
+const CODE = "3p2";
 
 export function Empty({ onDone }) {
   const [state, setState] = React.useState("Enter Charger Number");
